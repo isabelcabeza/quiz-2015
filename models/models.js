@@ -14,7 +14,7 @@ var storage = process.env.DATABASE_STORAGE;
 var Sequelize = require('sequelize');
 // Usar BBDD SQLite o Postgres
 var sequelize = new Sequelize(DB_name, user, pwd,
-{ dialect: protocol,
+{ dialect: dialect,
 protocol: protocol,
 port: port,
 host: host,
@@ -33,9 +33,8 @@ Quiz.count().then(function (count){
 if(count === 0) { // la tabla se inicializa solo si está vacía
 Quiz.create({ pregunta: 'Capital de Italia',
 respuesta: 'Roma'
+}).then(function(){console.log('Base de datos inicializada')});
+}
 })
-.then(function(){console.log('Base de datos inicializada')});
-};
-});
 });
 
